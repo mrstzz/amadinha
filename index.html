@@ -23,7 +23,6 @@
             --brand-yellow: #facc15; 
         }
         
-        /* Canvas para os confetes */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -34,13 +33,9 @@
             pointer-events: none; 
         }
         
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none; 
-            scrollbar-width: none;  
-        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
         .scroll-reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -50,6 +45,24 @@
         .scroll-reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Animação de pulsação para o coração */
+        .heart-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Estilos para o Modal da Carta */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
     </style>
 </head>
@@ -69,12 +82,9 @@
                         <h1 class="text-3xl font-black leading-tight">Feliz aniversário, Amarela!!</h1>
                         <p class="mt-2 text-2xl">🥳🥳🥳</p>
                     </header>
-                    
-                    <!-- Player do Spotify incorporado -->
                     <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-4 text-center scroll-reveal">
                         <h2 class="font-bold text-xl text-gray-800">Nossa Canção</h2>
                         <p class="text-sm text-gray-500 mb-4">Sempre vou lembrar de você quando ouço ela...</p>
-                        
                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3hRV0jL3vUpRrcy398teAU?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                 </div>
@@ -83,34 +93,46 @@
                 <section class="p-6 bg-white">
                     <h2 class="text-2xl font-bold text-center text-gray-800 mb-4 scroll-reveal">Nossas Memórias</h2>
                     <div class="grid grid-cols-2 gap-4">
-                        
-                        <!-- VÍDEO EM DESTAQUE -->
                         <div class="col-span-2 scroll-reveal">
+                            <!-- NOTA: O caminho do vídeo é local. Substitua por um link online para funcionar. -->
                             <video controls class="rounded-lg shadow-md w-full aspect-video object-cover bg-gray-100" autoplay muted loop>
                                 <source src="img/amadinha.mp4" type="video/mp4">
                                 Seu navegador não suporta o vídeo.
                             </video>
                             <p class="text-center text-sm mt-2 text-gray-600">(espero que no futuro as recordações voltem)</p>
                         </div>
-
-                        <!-- FOTOS -->
                         <div class="scroll-reveal" style="transition-delay: 200ms;">
-                            <img src="./img/IMG_20221225_234204_784.jpg" alt="Img 1" class="rounded-lg shadow-md aspect-square object-cover">
+                            <!-- NOTA: O caminho da imagem é local. Substitua por um link online para funcionar. -->
+                            <img src="img/IMG_20221225_234204_784.jpg" alt="Img 1" class="rounded-lg shadow-md aspect-square object-cover">
                             <p class="text-center text-sm mt-2 text-gray-600">Talvez você não lembre</p>
                         </div>
                         <div class="scroll-reveal" style="transition-delay: 300ms;">
-                            <img src="./img/amad2.png" alt="Img 2" class="rounded-lg shadow-md aspect-square object-cover">
+                             <!-- NOTA: O caminho da imagem é local. Substitua por um link online para funcionar. -->
+                            <img src="img/amadinha2.png" alt="Img 2" class="rounded-lg shadow-md aspect-square object-cover">
                             <p class="text-center text-sm mt-2 text-gray-600">Um dia qualquer</p>
                         </div>
-
-                        <div class="scroll-reveal" style="transition-delay: 400ms;">
-                            <img src="./img/amd3.png" alt="Img 3" class="rounded-lg shadow-md aspect-square object-cover">
+                        <div class="col-span-2 scroll-reveal" style="transition-delay: 400ms;">
+                             <!-- NOTA: O caminho da imagem é local. Substitua por um link online para funcionar. -->
+                            <img src="img/amd3.png" alt="Img 3" class="rounded-lg shadow-md w-full h-auto">
                             <p class="text-center text-sm mt-2 text-gray-600">Cineminha</p>
                         </div>
                     </div>
                 </section>
+                
+                <!-- SEÇÃO CRONÔMETRO -->
+                <section class="p-6 bg-white">
+                    <div class="text-center scroll-reveal">
+                        <h2 class="text-2xl font-bold text-gray-800">Contagem para o seu próximo aniversário</h2>
+                        <div id="countdown" class="flex justify-center gap-4 md:gap-8 mt-4 text-gray-800">
+                            <div class="text-center"><div id="days" class="text-4xl font-bold">0</div><div class="text-xs">Dias</div></div>
+                            <div class="text-center"><div id="hours" class="text-4xl font-bold">0</div><div class="text-xs">Horas</div></div>
+                            <div class="text-center"><div id="minutes" class="text-4xl font-bold">0</div><div class="text-xs">Minutos</div></div>
+                            <div class="text-center"><div id="seconds" class="text-4xl font-bold">0</div><div class="text-xs">Segundos</div></div>
+                        </div>
+                    </div>
+                </section>
 
-                <!-- SEÇÃO 3: BOTÃO SPOTIFY -->
+                <!-- SEÇÃO 3: SPOTIFY -->
                 <section class="p-6 bg-[var(--bg-light-yellow)]">
                     <div class="text-center scroll-reveal">
                         <h2 class="text-2xl font-bold text-gray-800">Playlist que eu fiz com</h2>
@@ -147,90 +169,60 @@
                 </section>
 
                 <!-- SEÇÃO 5: MENSAGEM FINAL E CHAT -->
-                <footer class="p-6 pt-10 bg-[var(--bg-light-yellow)] text-center">
-                    <img src="https://placehold.co/600x400/facc15/1f2937?text=Nossa+Foto+Favorita" alt="sla aq" class="rounded-xl shadow-xl mx-auto mb-6 w-full scroll-reveal">
-                    <h2 class="text-2xl font-bold text-gray-800 scroll-reveal">Você é incrível.</h2>
-                    <p class="text-gray-600 mt-2 scroll-reveal">O aniversário é seu, mas o maior presente quem ganhou fui eu: poder voltar a falar com você.</p>
-                    
-                    <!-- Simulação de Chat do WhatsApp -->
-                    <div class="mt-8 text-left max-w-md mx-auto p-3 bg-gray-200 rounded-xl scroll-reveal" style="background-image: url('./img/amada.jpg'); background-size: 550px;">
+                <footer class="pt-10 bg-[var(--bg-light-yellow)] text-center">
+                     <!-- NOTA: O caminho da imagem é local. Substitua por um link online para funcionar. -->
+                    <!-- <img src="img/amada.jpg" alt="sla aq" class="w-full h-auto scroll-reveal"> -->
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 scroll-reveal">Você é incrível.</h2>
+                        <p class="text-gray-600 mt-2 scroll-reveal">O aniversário é seu, mas o maior presente quem ganhou fui eu: poder voltar a falar com você.</p>
                         
-                        <div class="space-y-2 flex flex-col">
-                            <!-- Separador de data -->
-                            <div class="flex justify-center my-2 scroll-reveal">
-                                <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-                                    22 DE FEVEREIRO 2020
-                                </div>
-                            </div>
-                            <!-- Mensagem Recebida -->
-                            <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;">
-                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">Oii, tudo bem?</p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">11:11</p>
-                                </div>
-                            </div>
-                            <!-- Mensagem Enviada -->
-                            <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
-                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">Oii</p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">11:12</p>
-                                </div>
-                            </div>
-                               <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
-                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">Ss, e com você?? </p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">11:12</p>
-                                </div>
-                            </div>
-                            <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;">
-                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">to bem tbmm</p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">11:14</p>
-                                </div>
-                            </div><br>
-                             <div class="flex justify-center my-2 scroll-reveal">
-                                <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-                                    26 DE FEVEREIRO 2020
-                                </div>
-                            </div>
-                            <!-- Mensagem Enviada com Thumbnail -->
-                            <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
-                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800 mb-2">tô muito viciado nessa música, olha</p>
-                                    <a href="https://youtu.be/UNZqm3dxd2w?si=mKgLr-cxTcq7DwXA" target="_blank" class="block bg-gray-100 rounded-lg overflow-hidden">
-                                        <img src="https://img.youtube.com/vi/UNZqm3dxd2w/mqdefault.jpg" alt="Thumbnail do YouTube para a música The Box" class="w-full h-auto">
-                                        <div class="p-2 border-l-4 border-yellow-400">
-                                            <p class="font-semibold text-sm text-gray-800 truncate">Roddy Ricch - The Box [Official Audio]</p>
-                                            <p class="text-xs text-gray-500">youtube.com</p>
-                                        </div>
-                                    </a>
-                                    <p class="text-xs text-gray-400 text-right mt-1">13:12</p>
-                                </div>
-                            </div>
-                            <!-- Mensagem Recebida -->
-                            <div class="flex justify-start scroll-reveal" style="transition-delay: 2000ms;">
-                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">Gosteeei</p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">13:16</p>
-                                </div>
-                            </div>
-                             <!-- Mensagem Recebida -->
-                            <div class="flex justify-start scroll-reveal" style="transition-delay: 2800ms;">
-                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
-                                    <p class="text-sm text-gray-800">Você já viu a tradução dessa música?</p>
-                                    <p class="text-xs text-gray-400 text-right mt-1">13:16</p>
-                                </div>
+                        <!-- Simulação de Chat do WhatsApp -->
+                        <div class="mt-8 text-left max-w-md mx-auto p-3 bg-gray-200 rounded-xl scroll-reveal" style="background-image: url('img/amada.jpg'); background-size: 300px;">
+                            <div id="chat-container" class="space-y-2 flex flex-col">
+                                <div class="flex justify-center my-2 scroll-reveal"><div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">22 DE FEVEREIRO 2020</div></div>
+                                <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;"><div class="bg-white rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Oii, tudo bem?</p><p class="text-xs text-gray-400 text-right mt-1">11:11</p></div></div>
+                                <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;"><div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Oii</p><p class="text-xs text-gray-400 text-right mt-1">11:12</p></div></div>
+                                <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;"><div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Ss, e com você?? </p><p class="text-xs text-gray-400 text-right mt-1">11:12</p></div></div>
+                                <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;"><div class="bg-white rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">to bem tbmm</p><p class="text-xs text-gray-400 text-right mt-1">11:14</p></div></div>
+                                <div class="flex justify-center my-2 scroll-reveal"><div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">26 DE FEVEREIRO 2020</div></div>
+                                <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;"><div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800 mb-2">tô muito viciado nessa música, olha</p><a href="https://youtu.be/UNZqm3dxd2w?si=mKgLr-cxTcq7DwXA" target="_blank" class="block bg-gray-100 rounded-lg overflow-hidden"><img src="https://img.youtube.com/vi/UNZqm3dxd2w/mqdefault.jpg" alt="Thumbnail do YouTube para a música The Box" class="w-full h-auto"><div class="p-2 border-l-4 border-yellow-400"><p class="font-semibold text-sm text-gray-800 truncate">Roddy Ricch - The Box [Official Audio]</p><p class="text-xs text-gray-500">youtube.com</p></div></a><p class="text-xs text-gray-400 text-right mt-1">13:12</p></div></div>
+                                <div class="flex justify-start scroll-reveal" style="transition-delay: 1500ms;"><div class="bg-white rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Gosteeei</p><p class="text-xs text-gray-400 text-right mt-1">13:16</p></div></div>
+                                <div class="flex justify-start scroll-reveal" style="transition-delay: 2500ms;"><div class="bg-white rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Você já viu a tradução dessa música?</p><p class="text-xs text-gray-400 text-right mt-1">13:16</p></div></div>
+                                <!-- Botão de Resposta Falso -->
+                                <div id="reply-button-container" class="pt-2 scroll-reveal" style="transition-delay: 3000ms;"><button id="reply-button" class="w-full text-left p-2 bg-white rounded-full text-gray-400 text-sm">Responder...(clica ai)</button></div>
                             </div>
                         </div>
-                    </div>
+                        
+                        <!-- Botão para abrir a carta -->
+                        <button id="open-letter-button" class="mt-8 w-full bg-[var(--brand-yellow)] text-gray-800 font-bold py-3 rounded-2xl shadow-lg hover:bg-yellow-400 transition-all duration-200 active:scale-95 scroll-reveal">
+                            Clique para abrir sua carta
+                        </button>
 
-                    <p class="text-3xl mt-8 scroll-reveal">💛</p>
+                        <p class="text-3xl mt-8 scroll-reveal heart-pulse">💛</p>
+                    </div>
                 </footer>
             </div>
         </div>
     </div>
 
+    <!-- Modal da Carta -->
+    <div id="letter-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none modal-overlay">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto opacity-0 -translate-y-10 modal-content">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Para a Amarela, Amadinha, Iara, Iarinha, Pr1ncesa...</h2>
+            <div class="text-gray-600 space-y-4">
+                <p>Escrever isso é um misto de nostalgia. Olhar nossas fotos, lembrar das músicas, das conversas... é como se um filme passasse na minha cabeça. Eu lembro que eu fazia muito essas cartinhas e textos imensos nos seus aniversários kkk</p>
+                <p>Independente de tudo, do tempo, da distância ou dos "e se", o carinho que eu sinto por você continua aqui, guardado. Você foi (e é) uma daquelas pessoas raras que marcam a gente de um jeito que não dá pra explicar, só sentir. Eu poderia tentar te procurar em mil lugares, mil pessoas, mil novas fases, mas eu nunca encontraria algo que resumisse o que foi e é você</p>
+                <p>Feliz aniversário. Que seu dia seja tão incrível quanto você. Que você sorria, celebre e se sinta a pessoa mais especial do mundo, porque para mim, você sempre vai ser.</p>
+                <p class="font-semibold">Com todo o carinho,</p>
+                <p class="font-bold">Theus</p>
+            </div>
+            <button id="close-letter-button" class="mt-6 w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-xl hover:bg-gray-300 transition-colors">Fechar</button>
+        </div>
+    </div>
+
+
     <script>
+        // --- Lógica para Animação de Rolagem ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -238,20 +230,18 @@
                 }
             });
         }, { threshold: 0.1 });
-
         const hiddenElements = document.querySelectorAll('.scroll-reveal');
         hiddenElements.forEach((el) => observer.observe(el));
 
+        // --- Lógica para Efeito de Confetes ---
         const canvas = document.getElementById('confetti-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         let confettiParticles = [];
         const colors = ['#facc15', '#fde047', '#fca5a5', '#93c5fd', '#a7f3d0'];
         const totalConfetti = 100;
         let confettiActive = true; 
-
         function Confetti() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height - canvas.height;
@@ -263,7 +253,6 @@
             this.tiltAngle = 0;
             this.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
         }
-
         Confetti.prototype.draw = function() {
             ctx.beginPath();
             ctx.lineWidth = this.radius / 2;
@@ -272,10 +261,8 @@
             ctx.lineTo(this.x + this.tilt, this.y + this.tilt + (this.radius / 4));
             ctx.stroke();
         }
-
         function updateConfetti() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             let remainingParticles = 0;
             for (let i = 0; i < confettiParticles.length; i++) {
                 let p = confettiParticles[i];
@@ -283,38 +270,77 @@
                 p.y += p.speed;
                 p.x += Math.sin(p.tiltAngle) * 2;
                 p.tilt = Math.sin(p.tiltAngle) * 15;
-
                 if (confettiActive && p.y > canvas.height) {
                     confettiParticles[i] = new Confetti();
                 }
-
                 if (p.y < canvas.height) {
                     remainingParticles++;
                     p.draw();
                 }
             }
-            
             if (remainingParticles > 0) {
                 requestAnimationFrame(updateConfetti);
             } else {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
-
         for (let i = 0; i < totalConfetti; i++) {
             confettiParticles.push(new Confetti());
         }
-
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-
         updateConfetti();
+        setTimeout(() => { confettiActive = false; }, 10000); 
 
-        setTimeout(() => {
-            confettiActive = false;
-        }, 10000); 
+        // --- Lógica do Cronômetro ---
+        const countdown = () => {
+            const now = new Date();
+            let nextBirthday = new Date(now.getFullYear(),6,4); // Mês 1 é Fevereiro (0-11)
+            if (now > nextBirthday) {
+                nextBirthday.setFullYear(now.getFullYear() + 1);
+            }
+            const totalSeconds = (nextBirthday - now) / 1000;
+            document.getElementById('days').innerText = Math.floor(totalSeconds / 3600 / 24);
+            document.getElementById('hours').innerText = Math.floor(totalSeconds / 3600) % 24;
+            document.getElementById('minutes').innerText = Math.floor(totalSeconds / 60) % 60;
+            document.getElementById('seconds').innerText = Math.floor(totalSeconds) % 60;
+        };
+        setInterval(countdown, 1000);
+        countdown();
+
+        // --- Lógica do Modal da Carta ---
+        const letterModal = document.getElementById('letter-modal');
+        const openLetterButton = document.getElementById('open-letter-button');
+        const closeLetterButton = document.getElementById('close-letter-button');
+        openLetterButton.addEventListener('click', () => {
+            letterModal.classList.remove('opacity-0', 'pointer-events-none');
+            letterModal.querySelector('.modal-content').classList.remove('opacity-0', '-translate-y-10');
+        });
+        const closeModal = () => {
+            letterModal.classList.add('opacity-0');
+            letterModal.querySelector('.modal-content').classList.add('opacity-0', '-translate-y-10');
+            setTimeout(() => letterModal.classList.add('pointer-events-none'), 300);
+        };
+        closeLetterButton.addEventListener('click', closeModal);
+        letterModal.addEventListener('click', (e) => {
+            if (e.target === letterModal) closeModal();
+        });
+        
+        // --- Lógica da Resposta do Chat ---
+        const replyButton = document.getElementById('reply-button');
+        const replyContainer = document.getElementById('reply-button-container');
+        const chatContainer = document.getElementById('chat-container');
+        replyButton.addEventListener('click', () => {
+            replyContainer.remove();
+            const finalMessage = document.createElement('div');
+            finalMessage.className = 'flex justify-end scroll-reveal';
+            finalMessage.innerHTML = `<div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow"><p class="text-sm text-gray-800">Espero que no futuro eu tenha uma música dedicada menos delicada do que foi a nossa de 2020...</p><p class="text-xs text-gray-400 text-right mt-1">13:17</p></div>`;
+            chatContainer.appendChild(finalMessage);
+            // Força a animação da nova mensagem
+            setTimeout(() => finalMessage.classList.add('visible'), 50);
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarela</title>
+    
+    <!-- Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent; 
+        }
+        :root {
+            --bg-light-yellow: #fefce8; 
+            --brand-yellow: #facc15; 
+        }
+        
+        /* Canvas para os confetes */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 30; 
+            pointer-events: none; 
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none; 
+            scrollbar-width: none;  
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen p-4">
+    
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="w-full max-w-sm mx-auto bg-white border-8 border-gray-800 rounded-[2.5rem] shadow-2xl overflow-hidden z-20 relative">
+        <div class="relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-20"></div>
+
+            <div id="screen" class="w-full h-[80vh] min-h-[600px] bg-white flex flex-col overflow-y-auto scrollbar-hide">
+                
+                <!-- SEÇÃO 1: TOPO COM MÚSICA -->
+                <div class="p-6 pt-12 bg-[var(--bg-light-yellow)] flex-shrink-0">
+                    <header class="text-center text-gray-800 mb-6">
+                        <h1 class="text-3xl font-black leading-tight">Feliz aniversário, Amarela!!</h1>
+                        <p class="mt-2 text-2xl">🥳🥳🥳</p>
+                    </header>
+                    
+                    <!-- Player do Spotify incorporado -->
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-4 text-center scroll-reveal">
+                        <h2 class="font-bold text-xl text-gray-800">Nossa Canção</h2>
+                        <p class="text-sm text-gray-500 mb-4">Sempre vou lembrar de você quando ouço ela...</p>
+                        
+                       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3hRV0jL3vUpRrcy398teAU?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO 2: MEMÓRIAS -->
+                <section class="p-6 bg-white">
+                    <h2 class="text-2xl font-bold text-center text-gray-800 mb-4 scroll-reveal">Nossas Memórias</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        
+                        <!-- VÍDEO EM DESTAQUE -->
+                        <div class="col-span-2 scroll-reveal">
+                            <video controls class="rounded-lg shadow-md w-full aspect-video object-cover bg-gray-100" autoplay muted loop>
+                                <source src="img/amadinha.mp4" type="video/mp4">
+                                Seu navegador não suporta o vídeo.
+                            </video>
+                            <p class="text-center text-sm mt-2 text-gray-600">(espero que no futuro as recordações voltem)</p>
+                        </div>
+
+                        <!-- FOTOS -->
+                        <div class="scroll-reveal" style="transition-delay: 200ms;">
+                            <img src="./img/IMG_20221225_234204_784.jpg" alt="Img 1" class="rounded-lg shadow-md aspect-square object-cover">
+                            <p class="text-center text-sm mt-2 text-gray-600">Talvez você não lembre</p>
+                        </div>
+                        <div class="scroll-reveal" style="transition-delay: 300ms;">
+                            <img src="./img/amad2.png" alt="Img 2" class="rounded-lg shadow-md aspect-square object-cover">
+                            <p class="text-center text-sm mt-2 text-gray-600">Um dia qualquer</p>
+                        </div>
+
+                        <div class="scroll-reveal" style="transition-delay: 400ms;">
+                            <img src="./img/amd3.png" alt="Img 3" class="rounded-lg shadow-md aspect-square object-cover">
+                            <p class="text-center text-sm mt-2 text-gray-600">Cineminha</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SEÇÃO 3: BOTÃO SPOTIFY -->
+                <section class="p-6 bg-[var(--bg-light-yellow)]">
+                    <div class="text-center scroll-reveal">
+                        <h2 class="text-2xl font-bold text-gray-800">Playlist que eu fiz com</h2>
+                        <p class="text-gray-600 mt-2 mb-6">as músicas que combinam com você (xingxong).</p>
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2xiqtlaEcldzXy9gVZuS6n?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
+                        <a href="https://open.spotify.com/playlist/2xiqtlaEcldzXy9gVZuS6n?si=084f501141f04339" target="_blank" class="inline-flex items-center gap-3 bg-[#1DB954] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-[#1ED760] transition-all duration-200 active:scale-95 mt-4">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current"><title>Spotify</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 17.453c-.175.25-.499.324-.749.149-2.057-1.25-4.65-1.524-7.732-.839-.299.074-.6-.125-.674-.424-.074-.299.125-.6.424-.674a8.498 8.498 0 0 1 3.349-.699c2.725.0 5.025.924 6.9.224.25-.175.324-.499.149-.749zm1.024-2.274c-.225.324-.624.424-.949.199-2.299-1.424-5.698-1.849-8.397-.999-.375.125-.774-.075-.899-.449-.125-.375.075-.774.449-.899a9.957 9.957 0 0 1 9.222 1.124c.325.225.425.624.2 1.024zM19.123 12.85c-.275.4-.824.525-1.224.25-2.75-1.675-6.9-2.15-9.948-1.175-.45.15-.925-.1-.925-.55 0-.45.375-.825.825-.975 3.45-.975 8.025-.425 11.125 1.5.4.275.525.825.25 1.224z"/></svg>
+                            Ouvir playlist no Spotify
+                        </a>
+                    </div>
+                </section>
+
+                <!-- SEÇÃO 4: MOTIVOS -->
+                <section class="p-6 bg-white">
+                    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6 scroll-reveal">Alguns motivos do porquê eu ainda te acho incrível</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4 scroll-reveal">
+                            <div class="bg-[var(--bg-light-yellow)] p-2 rounded-full text-[var(--brand-yellow)] mt-1 flex-shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg></div>
+                            <div><h3 class="font-bold text-gray-800">Seu Sorriso</h3><p class="text-gray-600 text-sm">Ele ilumina qualquer lugar e faz meu coração acelerar.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 scroll-reveal" style="transition-delay: 200ms;">
+                            <div class="bg-[var(--bg-light-yellow)] p-2 rounded-full text-[var(--brand-yellow)] mt-1 flex-shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg></div>
+                            <div><h3 class="font-bold text-gray-800">Seu Jeitinho</h3><p class="text-gray-600 text-sm">A forma como você vê o mundo me inspira a ser alguém melhor.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 scroll-reveal" style="transition-delay: 300ms;">
+                            <div class="bg-[var(--bg-light-yellow)] p-2 rounded-full text-[var(--brand-yellow)] mt-1 flex-shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg></div>
+                            <div><h3 class="font-bold text-gray-800">Nossa conexão</h3><p class="text-gray-600 text-sm">É daquelas que o tempo não apaga e a vida só fortalece..</p></div>
+                        </li>
+                         <li class="flex items-start gap-4 scroll-reveal" style="transition-delay: 400ms;">
+                            <div class="bg-[var(--bg-light-yellow)] p-2 rounded-full text-[var(--brand-yellow)] mt-1 flex-shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg></div>
+                            <div><h3 class="font-bold text-gray-800">Você</h3><p class="text-gray-600 text-sm">É incrível como você entende até o que eu não digo.</p></div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- SEÇÃO 5: MENSAGEM FINAL E CHAT -->
+                <footer class="p-6 pt-10 bg-[var(--bg-light-yellow)] text-center">
+                    <img src="https://placehold.co/600x400/facc15/1f2937?text=Nossa+Foto+Favorita" alt="sla aq" class="rounded-xl shadow-xl mx-auto mb-6 w-full scroll-reveal">
+                    <h2 class="text-2xl font-bold text-gray-800 scroll-reveal">Você é incrível.</h2>
+                    <p class="text-gray-600 mt-2 scroll-reveal">O aniversário é seu, mas o maior presente quem ganhou fui eu: poder voltar a falar com você.</p>
+                    
+                    <!-- Simulação de Chat do WhatsApp -->
+                    <div class="mt-8 text-left max-w-md mx-auto p-3 bg-gray-200 rounded-xl scroll-reveal" style="background-image: url('./img/amada.jpg'); background-size: 550px;">
+                        
+                        <div class="space-y-2 flex flex-col">
+                            <!-- Separador de data -->
+                            <div class="flex justify-center my-2 scroll-reveal">
+                                <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                                    22 DE FEVEREIRO 2020
+                                </div>
+                            </div>
+                            <!-- Mensagem Recebida -->
+                            <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;">
+                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">Oii, tudo bem?</p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">11:11</p>
+                                </div>
+                            </div>
+                            <!-- Mensagem Enviada -->
+                            <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
+                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">Oii</p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">11:12</p>
+                                </div>
+                            </div>
+                               <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
+                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">Ss, e com você?? </p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">11:12</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-start scroll-reveal" style="transition-delay: 500ms;">
+                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">to bem tbmm</p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">11:14</p>
+                                </div>
+                            </div><br>
+                             <div class="flex justify-center my-2 scroll-reveal">
+                                <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                                    26 DE FEVEREIRO 2020
+                                </div>
+                            </div>
+                            <!-- Mensagem Enviada com Thumbnail -->
+                            <div class="flex justify-end scroll-reveal" style="transition-delay: 1200ms;">
+                                <div class="bg-[#dcf8c6] rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800 mb-2">tô muito viciado nessa música, olha</p>
+                                    <a href="https://youtu.be/UNZqm3dxd2w?si=mKgLr-cxTcq7DwXA" target="_blank" class="block bg-gray-100 rounded-lg overflow-hidden">
+                                        <img src="https://img.youtube.com/vi/UNZqm3dxd2w/mqdefault.jpg" alt="Thumbnail do YouTube para a música The Box" class="w-full h-auto">
+                                        <div class="p-2 border-l-4 border-yellow-400">
+                                            <p class="font-semibold text-sm text-gray-800 truncate">Roddy Ricch - The Box [Official Audio]</p>
+                                            <p class="text-xs text-gray-500">youtube.com</p>
+                                        </div>
+                                    </a>
+                                    <p class="text-xs text-gray-400 text-right mt-1">13:12</p>
+                                </div>
+                            </div>
+                            <!-- Mensagem Recebida -->
+                            <div class="flex justify-start scroll-reveal" style="transition-delay: 2000ms;">
+                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">Gosteeei</p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">13:16</p>
+                                </div>
+                            </div>
+                             <!-- Mensagem Recebida -->
+                            <div class="flex justify-start scroll-reveal" style="transition-delay: 2800ms;">
+                                <div class="bg-white rounded-lg p-2 max-w-[80%] shadow">
+                                    <p class="text-sm text-gray-800">Você já viu a tradução dessa música?</p>
+                                    <p class="text-xs text-gray-400 text-right mt-1">13:16</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-3xl mt-8 scroll-reveal">💛</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const hiddenElements = document.querySelectorAll('.scroll-reveal');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let confettiParticles = [];
+        const colors = ['#facc15', '#fde047', '#fca5a5', '#93c5fd', '#a7f3d0'];
+        const totalConfetti = 100;
+        let confettiActive = true; 
+
+        function Confetti() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height;
+            this.radius = Math.random() * 5 + 2;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.speed = Math.random() * 1.5 + 0.5; 
+            this.angle = Math.random() * 2 * Math.PI;
+            this.tilt = Math.random() * 10;
+            this.tiltAngle = 0;
+            this.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
+        }
+
+        Confetti.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.lineWidth = this.radius / 2;
+            ctx.strokeStyle = this.color;
+            ctx.moveTo(this.x + this.tilt + (this.radius / 4), this.y);
+            ctx.lineTo(this.x + this.tilt, this.y + this.tilt + (this.radius / 4));
+            ctx.stroke();
+        }
+
+        function updateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let remainingParticles = 0;
+            for (let i = 0; i < confettiParticles.length; i++) {
+                let p = confettiParticles[i];
+                p.tiltAngle += p.tiltAngleIncrement;
+                p.y += p.speed;
+                p.x += Math.sin(p.tiltAngle) * 2;
+                p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                if (confettiActive && p.y > canvas.height) {
+                    confettiParticles[i] = new Confetti();
+                }
+
+                if (p.y < canvas.height) {
+                    remainingParticles++;
+                    p.draw();
+                }
+            }
+            
+            if (remainingParticles > 0) {
+                requestAnimationFrame(updateConfetti);
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        for (let i = 0; i < totalConfetti; i++) {
+            confettiParticles.push(new Confetti());
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        updateConfetti();
+
+        setTimeout(() => {
+            confettiActive = false;
+        }, 10000); 
+    </script>
+</body>
+</html>
